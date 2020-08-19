@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:newz/data/models/article.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class ArticlesList extends StatelessWidget {
   const ArticlesList({
@@ -36,11 +37,26 @@ class _ArticleListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      contentPadding: EdgeInsets.symmetric(horizontal: 0.0),
-      visualDensity: VisualDensity.compact,
-      title: Text(article.headline),
-      onTap: onTap,
+    return Column(
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(16.0),
+          child: AspectRatio(
+            aspectRatio: 3/2,
+            child: FadeInImage.memoryNetwork(
+              placeholder: kTransparentImage,
+              image: article.images[0].url,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        ListTile(
+          contentPadding: EdgeInsets.symmetric(horizontal: 0.0),
+          visualDensity: VisualDensity.compact,
+          title: Text(article.headline),
+          onTap: onTap,
+        ),
+      ],
     );
   }
 }

@@ -68,9 +68,21 @@ class _SearchLoading extends StatelessWidget {
       highlightColor: Colors.grey[100],
       enabled: true,
       child: ListView.separated(
-        itemBuilder: (context, index) => Container(
-          height: 48.0,
-          color: Colors.white,
+        itemBuilder: (context, index) => Column(
+          children: [
+            ClipRRect(
+                borderRadius: BorderRadius.circular(16.0),
+                child: Container(
+                height: ((MediaQuery.of(context).size.width - 48) * (2/3)),
+                color: Colors.white,
+              ),
+            ),
+            SizedBox(height: 16.0,),
+            Container(
+              height: 18.0,
+              color: Colors.white,
+            ),
+          ],
         ),
         itemCount: 10,
         separatorBuilder: (context, index) => const SizedBox(height: 16),
